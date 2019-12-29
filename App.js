@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  Link,
 } from 'react-router-dom';
 
 import Steps from './Components/Steps';
@@ -16,11 +17,16 @@ function App() {
     <div className="wrapper">
       <div className="main">
         <Router>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/steps">Steps</Link>
+            </li>
+          </ul>
           <div className="App">
             <Switch>
-              <Route exact path="/">
-                <Steps />
-              </Route>
               <Route path="/steps" component={Steps} />
               <Route path="/finalise">
                 <Finalise />
