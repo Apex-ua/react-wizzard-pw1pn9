@@ -18,6 +18,9 @@ function Steps() {
         <li>
           <Link to={`${url}/1`}>Step 1</Link>
         </li>
+        <li>
+          <Link to={`${url}/2`}>Step 2</Link>
+        </li>
       </ul>
       <h2>Steps</h2>
       <Switch>

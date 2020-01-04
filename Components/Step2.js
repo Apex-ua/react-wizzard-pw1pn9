@@ -1,76 +1,76 @@
 import React, { Component } from 'react';
 
+
+// function AddressList(props) {
+//   const items = props.items;
+//   const listItems = items.map((item, index) => 
+//     <li key={item.id}>
+//       <label>
+//         <input name="address" type="radio" value={item.name} />
+//         <span>{`${item.name} ${item.address}` }</span>
+//       </label>
+//     </li>
+//   );
+//   return (
+//     <ul>{listItems}</ul>
+//   );
+// }
+
 class Step2 extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            reservName: null,
-            duration: null,
-            isLockedIn: false,
+            addresses: [
+              { 
+                "id": 1,
+                "name": "home",
+                "address": "350 Fifth Avenue, 34 floor, New York, NY 10118, USA"
+              },
+              { 
+                "id": 2,
+                "name": "office",
+                "address": "1227 Arthur Key Suite 012, New York, NY 10118, USA"
+              }
+            ],
+            selectedAddress: "",
          }
          this.handleInputChange = this.handleInputChange.bind(this);
          this.handleNextStep = this.handleNextStep.bind(this);
     }
 
     handleInputChange(event) {
-        const target = event.target;
-        // const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
+      this.setState({
+        selectedAddress: event.target.value
+      });
     }
+
 
     handleNextStep (event) {
         event.preventDefault();
         console.log(this.state);
-        // this.props.history.push('/steps/second');
     }
 
-    render() { 
-
-        console.log("this.props", this.props)
-
-
+    render() {  
         return ( 
             <form onSubmit={this.handleNextStep}>
-                <label>
-                    Reserv name
-                    <input
-                        name="reservName"
-                        type="text"
-                        value={this.state.reservName}
-                        onChange={this.handleInputChange} />
-                </label>
-                <br />
-                <label>
-                    2 weeks
-                    <input
-                        name="duration"
-                        type="radio"
-                        value="2 weeks"
-                        checked={this.state.duration === '2 weeks'}
-                        onChange={this.handleInputChange} />
-                </label>
-                <br />
-                <label>2 month
-                    <input
-                        name="duration"
-                        type="radio"
-                        value="2 month"
-                        checked={this.state.duration === '2 month'}
-                        onChange={this.handleInputChange} />
-                </label>
-                <br />
-                <label>
-                    Locked in?
-                    <input
-                        name="isLockedIn"
-                        type="checkbox"
-                        checked={this.state.isLockedIn}
-                        onChange={this.handleInputChange} />
-                </label>
+                <ul>
+                  {
+                    this.state.addresses.map((item, index) => 
+                      <li key={item.id}>
+                        <label>
+                          <input 
+                            name="address" 
+                            type="radio" 
+                            value={item.name} 
+                            onChange={this.handleInputChange}
+                            checked={this.state.selectedAddress === item.name}
+                          />
+                          <span>{`${item.name} ${item.address}` }</span>
+                        </label>
+                      </li>
+                    )
+                  }
+                </ul>
                 <input type="submit" value="Ship to this adress" />
             </form>
          );

@@ -3,6 +3,7 @@ import {
   useParams,
 } from 'react-router-dom';
 import Step1 from './Step1';
+import Step2 from './Step2';
 
 
 function Step() {
@@ -10,6 +11,8 @@ function Step() {
   let currentStep;
   if (stepId == 1) {
     currentStep = <Step1 />;
+  } else if (stepId == 2) {
+    currentStep = <Step2 />;
   }
   return (
     <div>
